@@ -158,9 +158,15 @@ func place_queens_1(board [][]string, num_rows, r, c int) bool {
 }
 
 func place_queens_2(board [][]string, num_rows, r, c, num_placed int) bool {
-	if r >= num_rows || num_placed == num_rows {
-		// we have fallen off the board or we have already placed all our queens, so check this assignment of queens
+	if num_placed == num_rows {
+		// we have already placed all our queens, so check this assignment of queens
 		return board_is_a_solution(board, num_rows)
+	}
+
+	if r >= num_rows {
+		// we have no yet placed all the queens, but we have fallen off the board
+		// so there is no solution
+		return false
 	}
 
 	// find the next square's location
@@ -192,9 +198,15 @@ func place_queens_2(board [][]string, num_rows, r, c, num_placed int) bool {
 }
 
 func place_queens_3(board [][]string, num_rows, r, c, num_placed int) bool {
-	if r >= num_rows || num_placed == num_rows {
-		// we have fallen off the board or we have already placed all our queens, so check this assignment of queens
+	if num_placed == num_rows {
+		// we have already placed all our queens, so check this assignment of queens
 		return board_is_a_solution(board, num_rows)
+	}
+
+	if r >= num_rows {
+		// we have no yet placed all the queens, but we have fallen off the board
+		// so there is no solution
+		return false
 	}
 
 	// find the next square's location
