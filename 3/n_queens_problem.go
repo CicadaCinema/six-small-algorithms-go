@@ -243,35 +243,37 @@ func make_attack_counts(num_rows int) [][]int {
 
 // adjust the attack counts for all the cells which are hit by a queen at (r,c) by adding val to the cell value
 func adjust_attack_counts(num_rows, r, c, val int) {
+	// adjust rows and columns
 	for i := 0; i < num_rows; i++ {
-		// adjust rows and columns
 		attack_counts[i][c] += val
 		attack_counts[r][i] += val
 
-		// adjust diagonals
+	}
+	// adjust diagonals
+	for i := 1; i < num_rows; i++ {
 		set_r := r + i
 		set_c := c + i
-		if set_r >= 0 && set_r < num_rows && set_c >= 0 && set_c < num_rows {
+		if set_r < num_rows && set_c < num_rows {
 			attack_counts[set_r][set_c] += val
 		}
 		set_r = r - i
 		set_c = c - i
-		if set_r >= 0 && set_r < num_rows && set_c >= 0 && set_c < num_rows {
+		if set_r >= 0 && set_c >= 0 {
 			attack_counts[set_r][set_c] += val
 		}
 		set_r = r - i
 		set_c = c + i
-		if set_r >= 0 && set_r < num_rows && set_c >= 0 && set_c < num_rows {
+		if set_r >= 0 && set_c < num_rows {
 			attack_counts[set_r][set_c] += val
 		}
 		set_r = r + i
 		set_c = c - i
-		if set_r >= 0 && set_r < num_rows && set_c >= 0 && set_c < num_rows {
+		if set_r < num_rows && set_c >= 0 {
 			attack_counts[set_r][set_c] += val
 		}
 	}
-	// in fact we counted (r,c) twice, and then four times
-	attack_counts[r][c] -= val * 5
+	// in fact we counted (r,c) twice
+	attack_counts[r][c] -= val
 
 }
 
