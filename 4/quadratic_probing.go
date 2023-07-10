@@ -31,8 +31,8 @@ type QuadraticProbingHashTable struct {
 	employees []*Employee
 }
 
-// Initialize a LinearProbingHashTable and return a pointer to it.
-func NewLinearProbingHashTable(capacity int) *QuadraticProbingHashTable {
+// Initialize a QuadraticProbingHashTable and return a pointer to it.
+func NewQuadraticProbingHashTable(capacity int) *QuadraticProbingHashTable {
 	return &QuadraticProbingHashTable{
 		capacity:  capacity,
 		employees: make([]*Employee, capacity),
@@ -265,7 +265,7 @@ func main() {
 		Employee{"Gina Gable", "202-555-0107", false},
 	}
 
-	hash_table := NewLinearProbingHashTable(10)
+	hash_table := NewQuadraticProbingHashTable(10)
 	for _, employee := range employees {
 		hash_table.set(employee.name, employee.phone)
 	}
@@ -297,7 +297,7 @@ func main() {
 	// Look at clustering.
 	random := rand.New(rand.NewSource(12345)) // Initialize with an unchanging seed
 	big_capacity := 1009
-	big_hash_table := NewLinearProbingHashTable(big_capacity)
+	big_hash_table := NewQuadraticProbingHashTable(big_capacity)
 	num_items := int(float32(big_capacity) * 0.9)
 	for i := 0; i < num_items; i++ {
 		str := fmt.Sprintf("%d-%d", i, random.Intn(1000000))
