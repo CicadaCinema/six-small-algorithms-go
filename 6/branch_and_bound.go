@@ -165,14 +165,13 @@ func do_branch_and_bound(items []Item, allowed_weight, next_index, best_value, c
 	if next_index == len(items) {
 		// in this case, we already have a fully built solution from our previous function calls, so return it
 		solution := copy_items(items)
-		total_value := solution_value(items, allowed_weight)
 
 		// assert that this is a new best solution
-		if total_value <= best_value {
+		if current_value <= best_value {
 			panic("this is not better than the previous best solution")
 		}
 
-		return solution, total_value, 1
+		return solution, current_value, 1
 	}
 
 	// we cannot do any better than the previous best solution, even if we added all the remaining items
