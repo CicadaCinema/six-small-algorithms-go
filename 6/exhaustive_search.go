@@ -143,7 +143,7 @@ func do_exhaustive_search(items []Item, allowed_weight, next_index int) ([]Item,
 	excl_solution, excl_value, excl_calls_count := do_exhaustive_search(items, allowed_weight, next_index+1)
 
 	total_calls := incl_calls_count + excl_calls_count + 1
-	if incl_value > excl_value {
+	if incl_value >= excl_value {
 		// including is better
 		return incl_solution, incl_value, total_calls
 	} else {
